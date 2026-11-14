@@ -1,0 +1,46 @@
+# pc-ha-bridge configuration — copy to ~/.config/pc-ha-bridge/config.toml
+
+[mqtt]
+host = "homeassistant.local"
+port = 1883
+username = "pc"
+password = "change-me"
+# tls = false
+# discovery_prefix = "homeassistant"
+# base_topic = "pc-ha-bridge"
+
+[device]
+# Defaults to the hostname. `id` ends up in topics and unique_ids — don't change it later.
+# id = "desktop"
+# name = "Desktop-PC"
+
+[system]
+# enabled = true
+interval = 10           # seconds between CPU/RAM/temperature updates
+# cpu_temp_sensor = "k10temp/Tctl"   # auto-detected if unset
+# nvidia = true         # GPU temperature/load via nvidia-smi
+
+[brightness]
+# enabled = true
+show_osd = true         # show the Plasma brightness OSD when HA changes brightness
+
+[audio]
+# enabled = true
+max_volume = 100
+# Ausgabegeräte (Sink-Name oder Beschreibung), die nicht in "Audioausgabe" auftauchen sollen:
+# hidden_outputs = ["BUS", "alsa_output.pci-0000_2d_00.1.hdmi-stereo"]
+
+[media]
+# enabled = true
+# player = "spotify"    # restrict to one MPRIS player; default: most recently active
+
+# Custom buttons. Commands run as your user inside the Plasma session.
+# [[commands]]
+# name = "Bildschirm sperren"
+# command = "loginctl lock-session"
+# icon = "mdi:lock"
+#
+# [[commands]]
+# name = "Firefox öffnen"
+# command = "firefox"
+# icon = "mdi:firefox"

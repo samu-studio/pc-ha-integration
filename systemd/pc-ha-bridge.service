@@ -1,0 +1,32 @@
+[Unit]
+Description=pc-ha-bridge: control this PC from Home Assistant via MQTT
+PartOf=graphical-session.target
+After=graphical-session.target
+# Give up after 10 failed starts within 10 minutes instead of restarting forever.
+StartLimitIntervalSec=600
+StartLimitBurst=10
+
+[Service]
+Type=notify
+NotifyAccess=main
+ExecStart=@VENV@/bin/pc-ha-bridge
+Restart=on-failure
+RestartSec=10
+TimeoutStopSec=15
+# The service pings the watchdog from its event loop; if it hangs, systemd restarts it.
+WatchdogSec=60
+
+# Resource limits: even a bug (leak, busy loop, fork flood) can never take the desktop down.
+# Measured: ~60-70 MB (incl. pactl/playerctl children, NVML) and ~0.2% CPU.
+MemoryHigh=128M
+MemoryMax=200M
+MemorySwapMax=0
+TasksMax=64
+CPUQuota=20%
+CPUWeight=20
+Nice=10
+IOSchedulingClass=idle
+OOMScoreAdjust=500
+
+[Install]
+WantedBy=graphical-session.target
