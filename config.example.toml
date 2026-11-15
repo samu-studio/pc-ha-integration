@@ -18,7 +18,7 @@ password = "change-me"
 # enabled = true
 interval = 10           # seconds between CPU/RAM/temperature updates
 # cpu_temp_sensor = "k10temp/Tctl"   # auto-detected if unset
-# nvidia = true         # GPU temperature/load via nvidia-smi
+# nvidia = true         # GPU temperature/load via NVML
 
 [brightness]
 # enabled = true
@@ -27,7 +27,7 @@ show_osd = true         # show the Plasma brightness OSD when HA changes brightn
 [audio]
 # enabled = true
 max_volume = 100
-# Ausgabegeräte (Sink-Name oder Beschreibung), die nicht in "Audioausgabe" auftauchen sollen:
+# Output devices (sink name or description) to hide from the audio output select:
 # hidden_outputs = ["BUS", "alsa_output.pci-0000_2d_00.1.hdmi-stereo"]
 
 [media]
@@ -36,11 +36,11 @@ max_volume = 100
 
 # Custom buttons. Commands run as your user inside the Plasma session.
 # [[commands]]
-# name = "Bildschirm sperren"
+# name = "Lock screen"
 # command = "loginctl lock-session"
 # icon = "mdi:lock"
 #
 # [[commands]]
-# name = "Firefox öffnen"
+# name = "Open Firefox"
 # command = "firefox"
 # icon = "mdi:firefox"
