@@ -13,8 +13,6 @@ All entities show up in HA automatically under a single device (name = hostname)
 | System values | CPU/RAM usage, CPU/GPU temperature, GPU load | `psutil`, sysfs hwmon, NVML |
 | Online status | all entities become "unavailable" when the PC is off | MQTT Last Will |
 
-Entity names in Home Assistant are in German.
-
 If a tool is missing (e.g. no Plasma, no `playerctl`, no NVIDIA GPU), only the affected
 feature is disabled – everything else keeps running.
 

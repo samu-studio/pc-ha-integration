@@ -69,12 +69,12 @@ class Audio(Component):
         if not shutil.which("wpctl"):
             raise RuntimeError("wpctl not found (WirePlumber not installed?)")
         self.bridge.add_entity(
-            "number", "volume", "Lautstärke", command_handler=self._set_volume,
+            "number", "volume", "Volume", command_handler=self._set_volume,
             min=0, max=self.cfg.max_volume, step=1, mode="slider", unit_of_measurement="%",
             icon="mdi:volume-high",
         )
         self.bridge.add_entity(
-            "switch", "mute", "Stumm", command_handler=self._set_mute, icon="mdi:volume-off",
+            "switch", "mute", "Mute", command_handler=self._set_mute, icon="mdi:volume-off",
         )
         if shutil.which("pactl"):
             try:
@@ -109,7 +109,7 @@ class Audio(Component):
             self._outputs = outputs
             # HA requires at least one option; re-registering re-announces the new option list.
             self.bridge.add_entity(
-                "select", "audio_output", "Audioausgabe", command_handler=self._set_output,
+                "select", "audio_output", "Audio output", command_handler=self._set_output,
                 options=list(outputs) or ["-"], icon="mdi:speaker",
             )
         label = next((k for k, v in outputs.items() if v == default), None)

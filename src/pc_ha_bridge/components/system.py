@@ -127,20 +127,20 @@ class SystemSensors(Component):
         b = self.bridge
         psutil.cpu_percent(None)  # prime: the first call always returns 0.0
 
-        b.add_entity("sensor", "cpu_usage", "CPU-Auslastung", unit_of_measurement="%",
+        b.add_entity("sensor", "cpu_usage", "CPU usage", unit_of_measurement="%",
                      state_class="measurement", icon="mdi:cpu-64-bit",
                      suggested_display_precision=0)
-        b.add_entity("sensor", "memory_usage", "Arbeitsspeicher", unit_of_measurement="%",
+        b.add_entity("sensor", "memory_usage", "Memory usage", unit_of_measurement="%",
                      state_class="measurement", icon="mdi:memory",
                      suggested_display_precision=0)
-        b.add_entity("sensor", "memory_used", "Arbeitsspeicher belegt", unit_of_measurement="GiB",
+        b.add_entity("sensor", "memory_used", "Memory used", unit_of_measurement="GiB",
                      device_class="data_size", state_class="measurement",
                      suggested_display_precision=1)
 
         self._resolve_temps()
         if self.cpu_temp:
             log.info("CPU temperature from %s", self.cpu_temp)
-            self._add_temp("cpu_temperature", "CPU-Temperatur")
+            self._add_temp("cpu_temperature", "CPU temperature")
         else:
             log.warning("no CPU temperature sensor found (chips: %s)", ", ".join(scan_hwmon()))
 
@@ -151,9 +151,9 @@ class SystemSensors(Component):
             except NvmlError as e:
                 log.debug("NVML unavailable: %s", e)
         if self.nvml or self.gpu_temp:
-            self._add_temp("gpu_temperature", "GPU-Temperatur")
+            self._add_temp("gpu_temperature", "GPU temperature")
         if self.nvml:
-            b.add_entity("sensor", "gpu_usage", "GPU-Auslastung", unit_of_measurement="%",
+            b.add_entity("sensor", "gpu_usage", "GPU usage", unit_of_measurement="%",
                          state_class="measurement", icon="mdi:expansion-card")
 
     def _resolve_temps(self) -> None:

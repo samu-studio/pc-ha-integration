@@ -181,7 +181,7 @@ class Brightness(Component):
             display = Display(object_id, label, maximum)
             self.displays[object_id] = display
             self.bridge.add_entity(
-                "number", object_id, f"Helligkeit {label}",
+                "number", object_id, f"Brightness {label}",
                 command_handler=partial(self._set_brightness, object_id),
                 own_availability=True,
                 min=0, max=100, step=1, mode="slider", unit_of_measurement="%",

@@ -22,8 +22,8 @@ MAX_STATE_LEN = 255  # HA rejects sensor states longer than this
 
 BUTTONS = [
     ("media_play_pause", "Play/Pause", "play-pause", "mdi:play-pause"),
-    ("media_next", "Nächster Titel", "next", "mdi:skip-next"),
-    ("media_previous", "Vorheriger Titel", "previous", "mdi:skip-previous"),
+    ("media_next", "Next track", "next", "mdi:skip-next"),
+    ("media_previous", "Previous track", "previous", "mdi:skip-previous"),
 ]
 
 
@@ -60,10 +60,10 @@ class Media(Component):
         if not shutil.which("playerctl"):
             raise RuntimeError("playerctl not found (dnf install playerctl)")
         b = self.bridge
-        b.add_entity("sensor", "media_status", "Wiedergabe", device_class="enum",
+        b.add_entity("sensor", "media_status", "Playback", device_class="enum",
                      options=STATUSES, icon="mdi:music")
-        b.add_entity("sensor", "media_title", "Titel", icon="mdi:music-note")
-        b.add_entity("sensor", "media_artist", "Interpret", icon="mdi:account-music")
+        b.add_entity("sensor", "media_title", "Title", icon="mdi:music-note")
+        b.add_entity("sensor", "media_artist", "Artist", icon="mdi:account-music")
         b.add_entity("sensor", "media_player", "Player", icon="mdi:application")
         for object_id, name, action, icon in BUTTONS:
             b.add_entity("button", object_id, name, has_state=False, icon=icon,
